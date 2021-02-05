@@ -1,38 +1,58 @@
+*,*::after,*::before{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
+  width: 100%;
+  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bg-black{
+  background-color: #000;
+}
+.bg-light-black{
+  background-color: rgb(32, 32, 32);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* homepage meme container */
+.home-meme-container{
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:.6rem .5rem ;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* meme component */
+
+.meme-image .hero {
+  height:10rem;
+  /* width:10rem; */
+  position: relative;
+  
 }
 
-.App-link {
-  color: #61dafb;
+.meme-image .hero:hover::after{
+  content:attr(data-template-name);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top:0;
+  left:0;
+  background:rgba(0, 0, 0, .7);
+  cursor:pointer;
+  
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.meme-image .hero img{
+  height:100%;
+  width: 100%;
+  object-fit: fill;
 }
+
+
