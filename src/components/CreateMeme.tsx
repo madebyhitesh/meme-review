@@ -1,13 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom'
-import { IGenerateMeme, IMeme } from '../@types/interfaces';
+import { IGenerateMeme, IMeme, IGeneratedMeme } from '../@types/interfaces';
+import { MemeContext } from '../ContextApi/MemeContext';
 import { GeneratedMemeModal } from '../utils/GeneratedMemeModal';
+import { MemeComponent } from '../utils/MemeComponent';
 
-interface IGeneratedMeme {
-    url: string,
-    pageUrl: string
-}
 
 const generateLink = (obj: IGenerateMeme): string => {
     let link: any = [];
@@ -19,7 +17,7 @@ const generateLink = (obj: IGenerateMeme): string => {
 }
 
 const CreateMeme: React.FC = () => {
-
+    const memesData = useContext(MemeContext)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [showModal, setShowModal] = useState<boolean>(false)
     const [inputValues, setInputValues] = useState<any>({})
@@ -125,6 +123,24 @@ const CreateMeme: React.FC = () => {
                         </Form>
                     </Col>
                 </Row>
+            </Container>
+            <Container fluid className="text-center text-light py-1">
+                <h3>Other Meme Templates</h3>
+            </Container>
+            <Container fluid className="home-meme-container mt-2">
+                {
+                    memesData && memesData.slice(0, 20).map(({ url, box_count, height, id, name, width }) => (
+                        <MemeComponent
+                            name={name}
+                            url={url}
+                            id={id}
+                            key={id}
+                            box_count={box_count}
+                            height={height}
+                            width={width}
+                        />
+                    ))
+                }
             </Container>
 
         </div>

@@ -23,3 +23,13 @@ export interface IGenerateMeme {
     text5?: string,
     text6?: string,
 }
+
+export interface IGeneratedMeme {
+    url: string,
+    pageUrl: string
+}
+
+export interface IFormPopup {
+    show: boolean,
+    onHide: () => void
+}

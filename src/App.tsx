@@ -6,6 +6,7 @@ import { IMeme } from './@types/interfaces'
 import HomePage from './components/HomePage'
 import { MemeContext } from './ContextApi/MemeContext'
 import CreateMeme from './components/CreateMeme'
+import Footer from './utils/Footer'
 
 
 const App: React.FC = () => {
@@ -36,6 +37,7 @@ const App: React.FC = () => {
               <CreateMeme />
             </Route>
           </Switch>
+          <Footer />
         </div>
       </Router>
     </MemeContext.Provider>

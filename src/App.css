@@ -9,6 +9,10 @@ img{
   width:100%;
 }
 
+ul{
+  list-style: none;
+}
+
 .App {
   width: 100%;
   
@@ -20,8 +24,14 @@ img{
 .bg-black{
   background-color: rgb(24, 19, 19);
 }
+.bg-dark-black{
+  background-color: rgb(0, 0, 0);
+}
 .bg-light-black{
   background-color: rgb(32, 32, 32);
+}
+.text-light-white{
+  color: rgb(88, 88, 88);
 }
 
 /* homepage meme container */
@@ -102,6 +112,14 @@ img{
 .modal-image-container{
 height:20rem;
 object-fit: contain;
+}
+
+.close{
+  color:white;
+}
+
+.close:hover{
+  color:white
 }
 
 
