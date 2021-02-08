@@ -15,8 +15,8 @@ const Navigation: React.FC = () => {
                 <Nav className="mr-auto font-weight-regular justify-content-center justify-self-center " style={{ flex: 1 }} activeKey="/">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/ranking">Rankings</Nav.Link>
-                    <Nav.Link href="/ranking">About us</Nav.Link>
-                    <Nav.Link href="/ranking">Contact</Nav.Link>
+                    <Nav.Link href="/your-meme">Your Memes</Nav.Link>
+                    <Nav.Link href="/contact">Contact</Nav.Link>
                 </Nav>
                 <Nav className="d-sm-flex flex-row jusify-conter">
                     <Nav.Item >

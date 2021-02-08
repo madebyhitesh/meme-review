@@ -1,17 +1,22 @@
 import React from 'react'
-import { Button, Col, Container, Form, FormControl, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
+import SearchInput from 'react-search-input'
+import { ISearch } from '../@types/interfaces'
 
 
-const SearchComponent: React.FC = () => {
+const SearchComponent: React.FC<ISearch> = ({ setSearchValue }) => {
+
+    const handleSearch = (value: string) => {
+        setSearchValue(value)
+    }
     return (
         <Container fluid className="bg-black py-3">
-            <Container className="w-75 text-center text-light">
-                <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, cum debitis.</h2>
+            <Container className="w-100 text-center text-light">
+                <h2>We provide you a platform to showcase your <span className="text-warning">memer</span> talent.</h2>
             </Container>
 
             <Container className="w-75 mt-3">
-                <FormControl placeholder="Search the template" />
-
+                <SearchInput className="search-input" onChange={(term: string) => handleSearch(term)} />
             </Container>
         </Container>
     )

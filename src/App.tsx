@@ -5,6 +5,7 @@ import Navigation from './components/Navigation'
 import { IMeme } from './@types/interfaces'
 import HomePage from './components/HomePage'
 import { MemeContext } from './ContextApi/MemeContext'
+import CreateMeme from './components/CreateMeme'
 
 
 const App: React.FC = () => {
@@ -25,11 +26,14 @@ const App: React.FC = () => {
   return (
     <MemeContext.Provider value={memesData}>
       <Router>
-        <div className="App bg-light-black">
+        <div className="App bg-black">
           <Navigation />
           <Switch>
-            <Route path="/" excat>
+            <Route path="/" exact>
               <HomePage />
+            </Route>
+            <Route path="/create-template" exact>
+              <CreateMeme />
             </Route>
           </Switch>
         </div>

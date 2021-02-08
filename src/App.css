@@ -4,13 +4,21 @@
   box-sizing: border-box;
 }
 
+img{
+  height:100%;
+  width:100%;
+}
+
 .App {
   width: 100%;
   
 }
+:root{
+  --primary-color: #ffc107;
+}
 
 .bg-black{
-  background-color: #000;
+  background-color: rgb(24, 19, 19);
 }
 .bg-light-black{
   background-color: rgb(32, 32, 32);
@@ -29,8 +37,9 @@
   height:10rem;
   /* width:10rem; */
   position: relative;
-  
+  transition:all .3s ease-in;
 }
+
 
 .meme-image .hero:hover::after{
   content:attr(data-template-name);
@@ -53,6 +62,56 @@
   height:100%;
   width: 100%;
   object-fit: fill;
+}
+
+.meme-image .hero:hover img{
+  object-fit: contain;
+
+}
+
+.page-item .page-link {
+  color: black;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+}
+
+.create-meme-template{
+  height: 20rem;
+  object-fit: fill;
+}
+
+/* search-feild */
+.search-input input{
+  width:100%;
+  border:none;
+  outline:none;
+  font-size: 1.2rem;
+  padding: .3rem 0;
+}
+
+.search-input input:focus{
+  border:none;
+  outline:none;
+}
+
+.modal-image-container{
+height:20rem;
+object-fit: contain;
+}
+
+
+
+
+@media all and (max-width:600px){
+  
+  .home-meme-container{
+    grid-template-columns: repeat(2,1fr);
+  }
 }
 
 
