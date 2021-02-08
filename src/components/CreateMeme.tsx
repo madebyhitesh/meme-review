@@ -30,7 +30,6 @@ const CreateMeme: React.FC = () => {
 
     for (let index: number = 0; index < box_count; index++) {
         let key: string = `text${index}`
-        console.log(inputValues[key])
         numberofinputs.push(
             <Form.Control
                 placeholder={`Enter text #${index + 1}`}
@@ -62,15 +61,21 @@ const CreateMeme: React.FC = () => {
 
         const templateData: string = generateLink({ ...body, ...inputValues });
 
-        const makeMeme: any = await fetch(`https://api.imgflip.com/caption_image?${templateData}`, {
-            method: "POST"
-        })
-        const response = await makeMeme.json();
-        const data = response.data
-        setIsLoading(false)
-        setInputValues({})
-        setGeneratedMemeData(data)
-        setShowModal(true)
+        try {
+            const makeMeme: any = await fetch(`https://api.imgflip.com/caption_image?${templateData}`, {
+                method: "POST"
+            })
+            const response = await makeMeme.json();
+            const data = response.data
+            setIsLoading(false)
+            setInputValues({})
+            setGeneratedMemeData(data)
+            setShowModal(true)
+        } catch (error) {
+            console.log(error)
+        }
+
+
     }
 
 
