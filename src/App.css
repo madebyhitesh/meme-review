@@ -101,7 +101,8 @@ ul{
   border:none;
   outline:none;
   font-size: 1.2rem;
-  padding: .3rem 0;
+  padding: .3rem .2rem;
+  border-radius: 10px;
 }
 
 .search-input input:focus{

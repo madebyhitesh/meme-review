@@ -16,18 +16,47 @@ const generateLink = (obj: IGenerateMeme): string => {
     return link.join("&");
 }
 
+const boxes = [{
+    text: "JavaScript",
+},
+{
+    text: "TypeSript",
+},
+{
+    text: "Frontend",
+},
+{
+    text: "dfdsfds",
+},
+]
+
+const generateBoxesLink = (array: any) => {
+    let link: string[] = []
+    array.forEach((obj: any, idx: number) => {
+        const head: string = `boxes[${idx}]`;
+        let objBody: string[] = [];
+        Object.entries(obj).forEach((item) => {
+            objBody.push(`${head}[${item[0]}]=${item[1]}`)
+        })
+        link.push(objBody.join("&"))
+    })
+    return link.join("&")
+}
+
+
+
 const CreateMeme: React.FC = () => {
     const memesData = useContext(MemeContext)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [showModal, setShowModal] = useState<boolean>(false)
     const [inputValues, setInputValues] = useState<any>({})
+    console.log(inputValues)
     const [generatedMemeData, setGeneratedMemeData] = useState<IGeneratedMeme | null>(null)
     const location = useLocation<IMeme>()
     const { box_count, id, name, url }: IMeme = location.state;
     let numberofinputs: any = []
-
     for (let index: number = 0; index < box_count; index++) {
-        let key: string = `text${index}`
+        let key: string = `boxes[${index}][text]`
         numberofinputs.push(
             <Form.Control
                 placeholder={`Enter text #${index + 1}`}
@@ -41,6 +70,8 @@ const CreateMeme: React.FC = () => {
                     }
                     setInputValues(() => ({ ...inputValues, ...property }))
                 }}
+
+                value={inputValues[key]}
 
             />
 
@@ -57,18 +88,19 @@ const CreateMeme: React.FC = () => {
         }
 
 
-        const templateData: string = generateLink({ ...body, ...inputValues });
+
 
         try {
-            const makeMeme: any = await fetch(`https://api.imgflip.com/caption_image?${templateData}`, {
-                method: "POST"
+            const userData: string = generateLink({ ...body, ...inputValues });
+            const makeMeme: any = await fetch(`https://api.imgflip.com/caption_image?${userData}`, {
+                method: "POST",
             })
             const response = await makeMeme.json();
             const data = response.data
             setIsLoading(false)
-            setInputValues({})
             setGeneratedMemeData(data)
             setShowModal(true)
+            console.log(response)
         } catch (error) {
             console.log(error)
         }
